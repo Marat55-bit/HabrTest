@@ -1,6 +1,7 @@
 package ru.course.at;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -47,5 +48,15 @@ public class HabrDemoTest {
 
         wait.until(ExpectedConditions.urlContains("/ru/flows/develop/"));
         assertTrue(driver.getCurrentUrl().contains("/ru/flows/develop/"), "Переход на страницу 'Разработка' не удался.");
+    }
+
+
+    @Test
+    public void publication() {
+        WebElement publicationIcon = driver.findElement(By.cssSelector("svg.tm-svg-img.tm-header-user-menu__icon.tm-header-user-menu__icon_write[height='24'][width='24']"));
+        publicationIcon.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe("https://habr.com/ru/sandbox/start"));
     }
 }
