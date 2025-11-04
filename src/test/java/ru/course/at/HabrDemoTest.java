@@ -1,17 +1,17 @@
 package ru.course.at;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -37,7 +37,7 @@ public class HabrDemoTest {
     @Test
     public void development() {
         WebElement menuButton = driver.findElement(
-                    By.xpath("//button[contains(@class, 'tm-header__burger')]"));
+                By.xpath("//button[contains(@class, 'tm-header__burger')]"));
         menuButton.click();
         By devItemLocator = By.xpath("//a[.//span[normalize-space(text())='Разработка']]");
         WebElement devItem = wait.until(ExpectedConditions.elementToBeClickable(devItemLocator));
@@ -51,8 +51,7 @@ public class HabrDemoTest {
     public void publication() {
         WebElement publicationIcon = driver.findElement(By.cssSelector("svg.tm-header-user-menu__icon_write"));
         publicationIcon.click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.urlToBe("https://habr.com/ru/sandbox/start"));
+        wait.until(ExpectedConditions.urlToBe("https://habr.com/ru/sandbox/start/"));
         assertEquals("https://habr.com/ru/sandbox/start/", driver.getCurrentUrl());
     }
 }
